@@ -1,0 +1,128 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<style>
+  .page-container {
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 20px;
+  }
+
+  /* Patient Info Card */
+  .patient-card {
+    background: #f9fbfd;
+    border-left: 6px solid #2980b9;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+  }
+
+  .patient-card h2 {
+    margin-bottom: 10px;
+    color: #2c3e50;
+  }
+
+  .patient-card p {
+    color: #555;
+    font-size: 15px;
+  }
+
+  /* Page Title */
+  .page-title {
+    text-align: center;
+    font-size: 28px;
+    color: #2c3e50;
+    margin-bottom: 30px;
+  }
+
+  /* Doctors Grid */
+  .doctors-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+  }
+
+  /* Doctor Card */
+  .doctor-card {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    transition: transform 0.3s ease;
+  }
+
+  .doctor-card:hover {
+    transform: translateY(-5px);
+  }
+
+  .doctor-card h3 {
+    color: #27ae60;
+    margin-bottom: 10px;
+  }
+
+  .doctor-card p {
+    color: #555;
+    margin: 6px 0;
+    font-size: 14px;
+  }
+
+  /* Book Button */
+  .book-btn {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 10px 16px;
+    background-color: #27ae60;
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: bold;
+    transition: background 0.3s;
+  }
+
+  .book-btn:hover {
+    background-color: #219150;
+  }
+</style>
+
+<div class="page-container">
+
+  <h2 class="page-title">All Doctors – Book Your Appointment</h2>
+
+  <!-- Patient Info -->
+  <div class="patient-card">
+    <h2>Patient Details</h2>
+    <p><strong>Name:</strong> {{ user.name }} - {{user.id}}</p>
+    <p><strong>Email:</strong> {{ user.email }}</p>
+  </div>
+
+  <!-- Doctors List -->
+  <div class="doctors-grid">
+    {% for d in doctors %}
+      <div class="doctor-card">
+        <h3>Dr. {{ d.name }} - {{d.spec}} - {{d.id}}</h3>
+        <p><strong>Email:</strong> {{ d.email }}</p>
+        <p><strong>Phone:</strong> {{ d.phNum }}</p>
+
+       <form  method="post">
+        {% csrf_token %}
+         <input type="hidden" name="d_id" value="{{d.id}}">
+        <textarea name="problem" id="" 
+        placeholder="enter yr problem here">
+        </textarea>
+        <input type="datetime-local" name="datetime-local" id="" />
+         <button class="book-btn" type="submit">
+          Book Appointment
+        </button>
+       </form>
+
+        <!-- Booking button (adjust URL if needed) -->
+       
+      </div>
+    {% endfor %}
+  </div>
+
+</div>
+
+{% endblock %}

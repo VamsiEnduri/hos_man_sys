@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="doctor-dashboard">
+
+  <div class="doctor-header">
+    <h2>My Appointments</h2>
+    <p><strong>Name:</strong> {{ user.name }}</p>
+    <p><strong>Specialization:</strong> {{ user.spec }}</p>
+  </div>
+
+  <div class="appointments-container">
+    {% for apt in appts %}
+      <div class="appointment-card">
+        <h3>Appointment Details</h3>
+        <p><strong>Patient Name :</strong> {{apt.patient.name}}</p>
+        <p><strong>Patient Email:</strong> {{ apt.patient.email }}</p>
+        <p><strong>Patient problem:</strong> {{ apt.problem }}</p>
+        <p><strong>Patient PhNum:</strong> {{ apt.patient.phNum }}</p>
+        <p><strong>Appointment_Time:</strong> {{ apt.apt_time }}</p>
+        <button>Accept</button>
+        <button>Reject</button>
+        <!-- <textarea name="" id="" placeholder="remarks"></textarea> -->
+      </div>
+    {% empty %}
+      <p class="no-appointments">No appointments found.</p>
+    {% endfor %}
+  </div>
+
+</div>
+
+{% endblock %}

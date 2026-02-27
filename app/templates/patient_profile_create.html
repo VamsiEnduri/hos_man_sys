@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<style>
+  .form-card {
+    max-width: 500px;
+    margin: 40px auto;
+    background: #ffffff;
+    padding: 25px 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    font-family: "Segoe UI", Tahoma, sans-serif;
+  }
+
+  .form-title {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #2c3e50;
+    font-size: 24px;
+  }
+
+  .user-name {
+    text-align: center;
+    font-weight: 600;
+    color: #3498db;
+    margin-bottom: 25px;
+  }
+
+  form p {
+    margin-bottom: 15px;
+  }
+
+  input, select, textarea {
+    width: 100%;
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 15px;
+  }
+
+  input:focus, select:focus, textarea:focus {
+    outline: none;
+    border-color: #3498db;
+  }
+
+  .submit-btn {
+    width: 100%;
+    padding: 12px;
+    margin-top: 15px;
+    background: #3498db;
+    border: none;
+    border-radius: 6px;
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+  }
+
+  .submit-btn:hover {
+    background: #2980b9;
+  }
+</style>
+
+<div class="form-card">
+  <h2 class="form-title">Create Patient Profile</h2>
+  <p class="user-name">{{ user.name }}</p>
+
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    <button type="submit" class="submit-btn">Create Profile</button>
+  </form>
+</div>
+
+{% endblock %}

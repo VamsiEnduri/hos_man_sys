@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<style>
+  .appointments-container {
+    max-width: 900px;
+    margin: 50px auto;
+    padding: 20px;
+  }
+
+  .page-title {
+    text-align: center;
+    font-size: 28px;
+    color: #2c3e50;
+    margin-bottom: 30px;
+  }
+
+  .appointment-card {
+    background: #ffffff;
+    border-left: 6px solid #27ae60;
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    transition: transform 0.3s ease;
+  }
+
+  .appointment-card:hover {
+    transform: translateY(-4px);
+  }
+
+  .appointment-card h3 {
+    color: #2980b9;
+    margin-bottom: 8px;
+  }
+
+  .appointment-card h4 {
+    color: #2c3e50;
+    margin-bottom: 10px;
+  }
+
+  .appointment-card p {
+    font-size: 14px;
+    color: #555;
+  }
+
+  .apt-time {
+    font-weight: bold;
+    margin-top: 8px;
+    color: #7f8c8d;
+  }
+
+  .empty-msg {
+    text-align: center;
+    color: #999;
+    font-size: 18px;
+    margin-top: 60px;
+  }
+</style>
+
+<div class="appointments-container">
+
+  <h2 class="page-title">My Appointments</h2>
+
+  {% if appts %}
+    {% for a in appts %}
+      <div class="appointment-card">
+        <h3>Dr. {{ a.doctor.name }} - {{a.apt_status}}</h3>
+        <h4>Problem</h4>
+        <p>{{ a.problem }}</p>
+
+        <p class="apt-time">
+          🕒 {{ a.apt_time|date:"d M Y, h:i A" }}
+        </p>
+      </div>
+    {% endfor %}
+  {% else %}
+    <p class="empty-msg">No appointments booked yet.</p>
+  {% endif %}
+
+</div>
+
+{% endblock %}

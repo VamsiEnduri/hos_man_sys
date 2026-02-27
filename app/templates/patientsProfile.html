@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<style>
+  .profile-card {
+    max-width: 500px;
+    margin: 40px auto;
+    background: #ffffff;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    font-family: "Segoe UI", Tahoma, sans-serif;
+  }
+
+  .profile-title {
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 25px;
+    font-size: 24px;
+  }
+
+  .profile-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 0;
+    border-bottom: 1px solid #eaeaea;
+    font-size: 16px;
+  }
+
+  .profile-item:last-child {
+    border-bottom: none;
+  }
+
+  .label {
+    font-weight: 600;
+    color: #555;
+  }
+
+  .value {
+    color: #111;
+  }
+</style>
+
+<div class="profile-card">
+  <h2 class="profile-title">Patient Profile</h2>
+
+  <div class="profile-item">
+    <span class="label">Name</span>
+    <span class="value">{{ user.name }}</span>
+  </div>
+
+  <div class="profile-item">
+    <span class="label">Phone</span>
+    <span class="value">{{ user.phNum }}</span>
+  </div>
+
+  <div class="profile-item">
+    <span class="label">Age</span>
+    <span class="value">{{ profile.age }}</span>
+  </div>
+
+  <div class="profile-item">
+    <span class="label">Weight</span>
+    <span class="value">{{ profile.weight }} kg</span>
+  </div>
+
+  <button>edit</button>
+  <form action="{% url 'delete' user.id %}" method="post">
+    {% csrf_token %}
+    <button type="submit">delete</button>
+  </form>
+</div>
+
+{% endblock %}

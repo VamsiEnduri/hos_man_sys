@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hospital management System</title>
+    <style>
+      /* Reset */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      /* Body */
+      body {
+        background-color: #f4f6f8;
+      }
+
+      /* Navbar */
+      .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #0d6efd;
+        padding: 15px 40px;
+        color: white;
+      }
+
+      /* Logo */
+      .logo {
+        font-size: 22px;
+        font-weight: bold;
+      }
+
+      /* Navigation Links */
+      .nav_links {
+        display: flex;
+        gap: 25px;
+      }
+
+      .nav_links a {
+        text-decoration: none;
+        color: white;
+        font-size: 16px;
+        padding: 6px 10px;
+        border-radius: 5px;
+        transition: background 0.3s;
+      }
+
+      /* Hover Effect */
+      .nav_links a:hover {
+        background-color: rgba(255, 255, 255, 0.2);
+      }
+
+      .doctor-dashboard {
+        max-width: 900px;
+        margin: 40px auto;
+        padding: 20px;
+      }
+
+      .doctor-header {
+        background: #0d6efd;
+        color: white;
+        padding: 20px;
+        border-radius: 10px;
+        margin-bottom: 25px;
+      }
+
+      .doctor-header h2 {
+        margin-bottom: 10px;
+      }
+
+      .doctor-header p {
+        font-size: 16px;
+      }
+
+      .appointments-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 20px;
+      }
+
+      .appointment-card {
+        background: #ffffff;
+        border-radius: 12px;
+        padding: 20px;
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+      }
+
+      .appointment-card:hover {
+        transform: translateY(-5px);
+      }
+
+      .appointment-card h3 {
+        color: #0d6efd;
+        margin-bottom: 12px;
+      }
+
+      .appointment-card p {
+        font-size: 15px;
+        margin: 8px 0;
+      }
+
+      .no-appointments {
+        text-align: center;
+        font-size: 18px;
+        color: #666;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="navbar">
+      <h2 class="logo">{{user.role}}s Panel</h2>
+
+      <div class="nav_links">
+        <a href="/">Home</a>
+        <a href="appointments">Appointments</a>
+        <a href="profile">Profile</a>
+      </div>
+    </div>
+
+    {% block content %} {% endblock %}
+  </body>
+</html>
